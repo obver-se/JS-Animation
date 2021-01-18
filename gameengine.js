@@ -10,6 +10,9 @@ class GameEngine {
         this.wheel = null;
         this.surfaceWidth = null;
         this.surfaceHeight = null;
+
+        this.right = false;
+        this.left = false;
     };
 
     init(ctx) {
@@ -30,6 +33,22 @@ class GameEngine {
 
     startInput() {
         var that = this;
+
+        this.ctx.canvas.addEventListener("keydown", function (e) {
+            if (e.code == "KeyA") {
+                that.left = true;
+            } else if (e.code == "KeyD") {
+                that.right = true;
+            }
+        }, false);
+
+        this.ctx.canvas.addEventListener("keyup", function (e) {
+            if (e.code == "KeyA") {
+                that.left = false;
+            } else if (e.code == "KeyD") {
+                that.right = false;
+            }
+        }, false);
 
         var getXandY = function (e) {
             var x = e.clientX - that.ctx.canvas.getBoundingClientRect().left;
@@ -60,6 +79,7 @@ class GameEngine {
             that.rightclick = getXandY(e);
             e.preventDefault();
         }, false);
+
     };
 
     addEntity(entity) {
