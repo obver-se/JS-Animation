@@ -9,6 +9,7 @@ class BackDrop {
         this.xOffset = 0;
         this.yOffset = 0;
         this.car = new Car(game, 0, 0);
+        this.sun = new Sun(game, 0, 0);
     }
 
     update() {
@@ -19,7 +20,9 @@ class BackDrop {
         let yProp = Math.cos(this.car.radianAngle);
         this.yOffset += Math.abs(0.1 * yProp);
         this.yOffset %= 1;
+
         this.car.update();
+        this.sun.update();
     }
 
     draw(ctx) {
@@ -52,5 +55,6 @@ class BackDrop {
         }
         ctx.stroke();
         this.car.draw(ctx);
+        this.sun.draw(ctx);
     }
 }
