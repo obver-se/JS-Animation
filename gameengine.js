@@ -21,6 +21,7 @@ class GameEngine {
         this.surfaceHeight = this.ctx.canvas.height;
         this.startInput();
         this.timer = new Timer();
+        this.ctx.imageSmoothingEnabled = false;
     };
 
     start() {

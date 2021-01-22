@@ -12,7 +12,7 @@ ASSET_MANAGER.downloadAll(function () {
 	gameEngine.init(ctx);
 
     gameEngine.addEntity(new BackDrop(gameEngine));
-    gameEngine.addEntity(new Car(gameEngine, 200, 200));
+    //gameEngine.addEntity(new Car(gameEngine, 200, 200));
 
 	gameEngine.start();
 });

@@ -7,13 +7,17 @@ class Car {
         this.MAX_ANGLE = 22.5;
     }
 
+    get radianAngle() {
+        return this.direction * (Math.PI / 180)
+    }
+
     update() {
         if (this.game.right && !this.game.left) {
             // going right
-            this.direction += 40 * this.game.clockTick;
+            this.direction += 60 * this.game.clockTick;
         } else if (!this.game.right && this.game.left) {
             // going left
-            this.direction -= 40 * this.game.clockTick;
+            this.direction -= 60 * this.game.clockTick;
         }
 
         this.direction = Math.max(this.direction, -this.MAX_ANGLE);
@@ -27,9 +31,17 @@ class Car {
         ctx.save();
         if (this.direction < 1) {
           ctx.scale(-1, 1);
-          ctx.drawImage(this.spritesheet, spriteChoice * 70, 0, 70, 40, -70, 0, 70, 40);
+          ctx.drawImage(this.spritesheet, 
+                        spriteChoice * 70, 0,
+                        70, 40,
+                        -70 * 2 - ctx.canvas.width / 2 + 70 * 2 / 2, 0 + 500, 
+                        70 * 2, 40 * 2);
         } else {
-          ctx.drawImage(this.spritesheet, spriteChoice * 70, 0, 70, 40, 0, 0, 70, 40);
+          ctx.drawImage(this.spritesheet, 
+                        spriteChoice * 70, 0, 
+                        70, 40, 
+                        0 + ctx.canvas.width / 2 - 70 * 2 / 2, 0 + 500, 
+                        70 * 2, 40 * 2);
         }
         ctx.restore();
     }
