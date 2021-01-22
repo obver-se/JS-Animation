@@ -5,6 +5,7 @@ class Car {
         // Direction of the car in degrees
         this.direction = 0;
         this.MAX_ANGLE = 22.5;
+        this.speed = 0.2;
     }
 
     get radianAngle() {
@@ -34,13 +35,13 @@ class Car {
           ctx.drawImage(this.spritesheet, 
                         spriteChoice * 70, 0,
                         70, 40,
-                        -70 * 2 - ctx.canvas.width / 2 + 70 * 2 / 2, 0 + 500, 
+                        -70 * 2 - ctx.canvas.width / 2 + 70 * 2 / 2, 0 + 350, 
                         70 * 2, 40 * 2);
         } else {
           ctx.drawImage(this.spritesheet, 
                         spriteChoice * 70, 0, 
                         70, 40, 
-                        0 + ctx.canvas.width / 2 - 70 * 2 / 2, 0 + 500, 
+                        0 + ctx.canvas.width / 2 - 70 * 2 / 2, 0 + 350, 
                         70 * 2, 40 * 2);
         }
         ctx.restore();

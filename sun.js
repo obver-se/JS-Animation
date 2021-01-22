@@ -27,7 +27,6 @@ class Sun {
 
     draw(ctx) {
         // Draw the suns sections
-        console.log(this.colorMix(this.START_COLOR, this.END_COLOR, .5));
         for (let i = 0; i < this.RADIUS; i++) {
             let normalizedProgress = i / this.RADIUS;
             ctx.strokeStyle = this.colorMix(this.START_COLOR, this.END_COLOR, normalizedProgress);
