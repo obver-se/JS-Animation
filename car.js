@@ -6,10 +6,19 @@ class Car {
         this.direction = 0;
         this.MAX_ANGLE = 22.5;
         this.speed = 0.2;
+        this.animations = [
+          new Animator(this.spritesheet, 70 * 3, 0, 70, 40, 2, 50, 0, true,  true),
+          new Animator(this.spritesheet, 70 * 2, 0, 70, 40, 2, 50, 0, true,  true),
+          new Animator(this.spritesheet, 70 * 1, 0, 70, 40, 2, 50, 0, true,  true),
+          new Animator(this.spritesheet, 0,      0, 70, 40, 2, 50, 0, 0,     true),
+          new Animator(this.spritesheet, 70 * 1, 0, 70, 40, 2, 50, 0, false, true),
+          new Animator(this.spritesheet, 70 * 2, 0, 70, 40, 2, 50, 0, false, true),
+          new Animator(this.spritesheet, 70 * 3, 0, 70, 40, 2, 50, 0, false, true)
+        ];
     }
 
     get radianAngle() {
-        return this.direction * (Math.PI / 180)
+        return this.direction * (Math.PI / 180);
     }
 
     update() {
@@ -27,23 +36,7 @@ class Car {
 
     draw(ctx) {
         // Pick which sprite based on direction
-        let absDirection = Math.abs(this.direction);
-        let spriteChoice = Math.floor(3 * (absDirection / this.MAX_ANGLE));
-        ctx.save();
-        if (this.direction < 1) {
-          ctx.scale(-1, 1);
-          ctx.drawImage(this.spritesheet, 
-                        spriteChoice * 70, 0,
-                        70, 40,
-                        -70 * 2 - ctx.canvas.width / 2 + 70 * 2 / 2, 0 + 350, 
-                        70 * 2, 40 * 2);
-        } else {
-          ctx.drawImage(this.spritesheet, 
-                        spriteChoice * 70, 0, 
-                        70, 40, 
-                        0 + ctx.canvas.width / 2 - 70 * 2 / 2, 0 + 350, 
-                        70 * 2, 40 * 2);
-        }
-        ctx.restore();
+        let spriteChoice = Math.round((this.direction + this.MAX_ANGLE) / (this.MAX_ANGLE / 3));
+        this.animations[spriteChoice].drawFrame(this.game.clockTick * 1000, ctx, ctx.canvas.width / 2 - 70, 380, 2);
     }
 }
