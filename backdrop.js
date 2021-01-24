@@ -31,6 +31,7 @@ class BackDrop {
 
         if (this.car.autoDirection == 0 && this.song.paused) {
             this.song.play();
+            this.song.volume /= 6;
         }
     }
 

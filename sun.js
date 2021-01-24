@@ -22,7 +22,7 @@ class Sun {
 
     update() {
         this.offset -= .05;
-        this.offset %= 10;
+        this.offset %= 6;
     }
 
     draw(ctx) {
@@ -31,7 +31,7 @@ class Sun {
             let normalizedProgress = i / this.RADIUS;
             ctx.strokeStyle = this.colorMix(this.START_COLOR, this.END_COLOR, normalizedProgress);
             ctx.beginPath();
-            if (Math.round(i / (10 * (normalizedProgress + 1)) + this.offset) % 2) {
+            if (Math.round(i / (6 * (normalizedProgress + 1)) + this.offset) % 3) {
                 let lineY = (this.RADIUS - i)
                 let circleWidthAtI = Math.sqrt(1 - Math.pow(1 - normalizedProgress, 2)) * this.RADIUS;
                 ctx.moveTo(ctx.canvas.width / 2 - circleWidthAtI, ctx.canvas.height / 2 - lineY);
