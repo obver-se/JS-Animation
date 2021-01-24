@@ -15,6 +15,7 @@ class Car {
           new Animator(this.spritesheet, 70 * 2, 0, 70, 40, 2, 50, 0, false, true),
           new Animator(this.spritesheet, 70 * 3, 0, 70, 40, 2, 50, 0, false, true)
         ];
+        this.autoDirection = -1;
     }
 
     get radianAngle() {
@@ -23,11 +24,27 @@ class Car {
 
     update() {
         if (this.game.right && !this.game.left) {
+            this.autoDirection = 0;
             // going right
             this.direction += 60 * this.game.clockTick;
         } else if (!this.game.right && this.game.left) {
+            this.autoDirection = 0;
             // going left
             this.direction -= 60 * this.game.clockTick;
+        }
+
+        if (this.autoDirection != 0) {
+            if (this.autoDirection == -1) {
+                this.direction -= 60 * this.game.clockTick;
+            } else if (this.autoDirection == 1) {
+                this.direction += 60 * this.game.clockTick;
+            }
+            if (this.direction > this.MAX_ANGLE) {
+                // we've gone all the way one direcion, start going back
+                this.autoDirection = -1;
+            } else if (this.direction < -this.MAX_ANGLE) {
+                this.autoDirection = 1;
+            }
         }
 
         this.direction = Math.max(this.direction, -this.MAX_ANGLE);
