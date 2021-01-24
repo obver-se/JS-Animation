@@ -11,6 +11,8 @@ class BackDrop {
         this.car = new Car(game, 0, 0);
         this.sun = new Sun(game, 0, 0);
         this.mountains = new Mountains(game, 0, 0);
+
+        this.song = new Audio('On the road.mp3');
     }
 
     update() {
@@ -26,6 +28,10 @@ class BackDrop {
         this.car.update();
         this.sun.update();
         this.mountains.update();
+
+        if (this.car.autoDirection == 0 && this.song.paused) {
+            this.song.play();
+        }
     }
 
     draw(ctx) {

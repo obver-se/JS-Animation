@@ -17,11 +17,17 @@ class GameEngine {
 
     init(ctx) {
         this.ctx = ctx;
-        this.surfaceWidth = this.ctx.canvas.width;
-        this.surfaceHeight = this.ctx.canvas.height;
+        this.surfaceWidth = this.ctx.canvas.width = window.innerWidth - 40;
+        this.surfaceHeight = this.ctx.canvas.height = window.innerHeight - 90;
         this.startInput();
         this.timer = new Timer();
         this.ctx.imageSmoothingEnabled = false;
+        window.addEventListener('resize', (e) => {
+            this.surfaceWidth = this.ctx.canvas.width = window.innerWidth - 40;
+            this.surfaceHeight = this.ctx.canvas.height = window.innerHeight - 90;
+            // For some reason this gets reset when the canvas is resized...
+            this.ctx.imageSmoothingEnabled = false;
+        });
     };
 
     start() {

@@ -54,6 +54,6 @@ class Car {
     draw(ctx) {
         // Pick which sprite based on direction
         let spriteChoice = Math.round((this.direction + this.MAX_ANGLE) / (this.MAX_ANGLE / 3));
-        this.animations[spriteChoice].drawFrame(this.game.clockTick * 1000, ctx, ctx.canvas.width / 2 - 70, 380, 2);
+        this.animations[spriteChoice].drawFrame(this.game.clockTick * 1000, ctx, ctx.canvas.width / 2 - 70, ctx.canvas.height * (6/10), 2);
     }
 }
